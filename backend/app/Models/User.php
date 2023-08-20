@@ -18,7 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'username',
         'email',
         'password',
     ];
@@ -30,7 +32,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -42,4 +43,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function recipes() {
+        return $this->hasMany(Recipe::class, 'user_id');
+    }
+
+    public function likes() {
+        return $this->hasMany(Like::class, 'user_id');
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    public function ShoppingList() {
+        return $this->hasMany(ShoppingList::class, 'user_id');
+    }
+
+    public function MealPlan() {
+        return $this->hasMany(MealPlan::class, 'user_id');
+    }
 }
