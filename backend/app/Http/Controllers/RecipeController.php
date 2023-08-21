@@ -19,14 +19,7 @@ class RecipeController extends Controller
     {
         $page = $request->page ? $request->page : 1;
 
-        $recipes = Recipe::with('images', 'ingredients')
-            ->addSelect(['user_username' => User::select('username')
-                ->whereColumn('users.id', 'recipes.user_id')
-                ->limit(1)])
-            ->addSelect(['user_full_name' => User::selectRaw("CONCAT(first_name, ' ', last_name) as full_name")
-                ->whereColumn('users.id', 'recipes.user_id')
-                ->limit(1)])
-            ->paginate(10, ['*'], 'page', $page);
+        $recipes = Recipe::with('user', 'images', 'ingredients')->paginate(10, ['*'], 'page', $page);
 
         return response()->json([
             'status' => 'success',
@@ -91,5 +84,9 @@ class RecipeController extends Controller
         }
 
         return response()->json(['message' => 'Recipe created successfully']);
+    }
+    
+    public function searchByName() {
+
     }
 }
