@@ -69,4 +69,20 @@ class InteractionController extends Controller
             'message' => 'Comment Added Successfully'
         ], 200);
     }
+
+    public function deleteComment(Request $request)
+    {
+
+        $request->validate([
+            'comment_id' => 'required|numeric|exists:comments,id'
+        ]);
+        
+        $comment = Comment::find($request->comment_id);
+        $comment->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Comment Deleted Successfully'
+        ], 200);
+    }
 }
