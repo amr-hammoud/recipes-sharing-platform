@@ -28,4 +28,22 @@ class InteractionController extends Controller
             'message' => 'Recipe Liked Successfully'
         ], 200);
     }
+
+    public function unlike(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'recipe_id' => 'required|numeric|exists:recipes,id'
+        ]);
+
+        $like = Like::where('recipe_id',$request->recipe_id)->where('user_id',$user->id)->first();
+        $like->delete();
+
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Recipe unLiked Successfully'
+        ], 200);
+    }
 }
