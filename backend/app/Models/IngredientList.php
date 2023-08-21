@@ -9,6 +9,10 @@ class IngredientList extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['ingredient','id','recipe_id','created_at','updated_at'];
+
+    protected $appends = ['ingredient_name'];
+
     public function recipe() {
         return $this->belongsTo(Recipe::class, 'recipe_id');
     }
@@ -16,4 +20,10 @@ class IngredientList extends Model
     public function ingredient() {
         return $this->belongsTo(Ingredient::class, 'ingredient_id');
     }
+
+    public function getIngredientNameAttribute()
+    {
+        return $this->ingredient->name;
+    }
+    
 }
