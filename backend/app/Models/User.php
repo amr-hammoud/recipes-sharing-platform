@@ -13,6 +13,8 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $appends = ['full_name'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -33,6 +35,8 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $hidden = [
         'password',
+        'first_name',
+        'last_name',
     ];
 
     /**
@@ -64,7 +68,6 @@ class User extends Authenticatable implements JWTSubject
     public function MealPlan() {
         return $this->hasMany(MealPlan::class, 'user_id');
     }
-
     
     public function getJWTIdentifier(){
         return $this->getKey();
@@ -72,5 +75,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTCustomClaims() {
         return [];
+    }
+
+    public function getFullnameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }
