@@ -9,11 +9,22 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function user() {
+    protected $hidden = ['user'];
+
+    protected $appends = ['username'];
+
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function recipe() {
+    public function recipe()
+    {
         return $this->belongsTo(Recipe::class, 'recipe_id');
+    }
+
+    public function getUsernameAttribute()
+    {
+        return $this->user->username;
     }
 }
