@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
@@ -44,6 +45,28 @@ class InteractionController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Recipe unLiked Successfully'
+        ], 200);
+    }
+
+    public function comment(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'recipe_id' => 'required|numeric|exists:recipes,id',
+            'content' => 'required|string'
+        ]);
+
+        $comment = new Comment();
+        $comment->recipe_id = $request->recipe_id;
+        $comment->user_id = $user->id;
+        $comment->content = $request->content;
+        $comment->save();
+
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Comment Added Successfully'
         ], 200);
     }
 }

@@ -17,6 +17,7 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::post("create", [RecipeController::class, "createRecipe"]);
         Route::post("like", [InteractionController::class, "like"]);
         Route::post("unlike", [InteractionController::class, "unlike"]);
+        Route::post("comment", [InteractionController::class, "comment"]);
     });
 });
 
