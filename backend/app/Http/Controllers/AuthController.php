@@ -42,7 +42,7 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'Success',
             'data' => $user
-        ]);
+        ], 200);
     }
 
     public function register(Request $request)
@@ -69,7 +69,7 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'Success',
             'data' => $user
-        ]);
+        ], 200);
     }
 
     public function logout()
@@ -78,7 +78,7 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully logged out',
-        ]);
+        ], 200);
     }
 
     public function refresh()
@@ -89,6 +89,6 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'data' => $user
-        ]);
+        ], 200);
     }
 }
