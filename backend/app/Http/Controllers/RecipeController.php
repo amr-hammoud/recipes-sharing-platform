@@ -27,4 +27,14 @@ class RecipeController extends Controller
         ], 200);
     }
 
+    public function recipe($id)
+    {
+        $recipe = Recipe::withCount('likes')->with('user','cuisine','comments','ingredients')->findOrFail($id);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $recipe
+        ], 200);
+    }
+
 }
