@@ -36,7 +36,7 @@ class RecipeController extends Controller
 
     public function recipe($id)
     {
-        $recipe = Recipe::withCount('likes')->with('user', 'cuisine', 'comments', 'ingredients')->findOrFail($id);
+        $recipe = Recipe::withCount('likes')->with('user', 'cuisine', 'comments', 'ingredients', 'images')->findOrFail($id);
 
         return response()->json([
             'status' => 'success',
@@ -52,9 +52,9 @@ class RecipeController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'cuisine_id' => 'required|numeric|exists:cuisines,id',
-            'images' => 'required|array|min:1',
+            'images' => 'required|array|min:1|max:5',
             'images.*' => 'required|string',
-            'ingredients' => 'required|array',
+            'ingredients' => 'required|array|min:1',
         ]);
 
         $recipe = new Recipe();
@@ -67,13 +67,11 @@ class RecipeController extends Controller
         $ingredients = $request->ingredients;
 
         foreach ($ingredients as $ingredient) {
-            $ingredient = IngredientList::create(
-                [
-                    'recipe_id' => $recipe_id,
-                    'ingredient_id' => $ingredient['id'],
-                    'description' => $ingredient['description']
-                ]
-            );
+            $ingredient = IngredientList::create([
+                'recipe_id' => $recipe_id,
+                'ingredient_id' => $ingredient['id'],
+                'description' => $ingredient['description']
+            ]);
         }
 
         $images = $request->images;
@@ -84,6 +82,10 @@ class RecipeController extends Controller
             $image_data = base64_decode($base64_image_array[1]);
             $image_name = time() . Str::random(5) . '.' . $extension;
             $image_path = 'recipes/' . $recipe_id . '/';
+            $image = Image::create([
+                'recipe_id' => $recipe_id,
+                'name' => $image_name,
+            ]);
 
             Storage::disk('public')->put($image_path . $image_name, $image_data);
         }
