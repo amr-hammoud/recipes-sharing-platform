@@ -13,6 +13,7 @@ Route::group(["middleware" => "auth:api"], function(){
     Route::group(["prefix" => "recipe"], function(){
         Route::post("/", [RecipeController::class, "index"]);
         Route::get("{id}", [RecipeController::class, "recipe"]);
+        Route::post("create", [RecipeController::class, "createRecipe"]);
     });
 });
 

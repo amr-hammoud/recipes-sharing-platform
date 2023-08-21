@@ -13,6 +13,12 @@ class IngredientList extends Model
 
     protected $appends = ['ingredient_name'];
 
+    protected $fillable = [
+        'recipe_id',
+        'ingredient_id',
+        'description'
+    ];
+
     public function recipe() {
         return $this->belongsTo(Recipe::class, 'recipe_id');
     }
