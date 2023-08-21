@@ -17,12 +17,17 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $first_name = fake()->unique()->firstName();
+        $last_name = fake()->unique()->lastName();
+        $username = Str::lower($first_name) . '_' . Str::lower($last_name);
+        $email = Str::lower($first_name) . '_' . Str::lower($last_name) . '@mail.com';
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'username' => $username,
+            'email' => $email,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
         ];
     }
 
