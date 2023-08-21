@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InteractionController;
 use App\Http\Controllers\RecipeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::post("/", [RecipeController::class, "index"]);
         Route::get("{id}", [RecipeController::class, "recipe"]);
         Route::post("create", [RecipeController::class, "createRecipe"]);
+        Route::post("like", [InteractionController::class, "like"]);
     });
 });
 
