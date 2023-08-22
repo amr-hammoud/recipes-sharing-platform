@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cuisine;
 use App\Models\Image;
 use App\Models\Ingredient;
 use App\Models\IngredientList;
@@ -96,13 +97,39 @@ class RecipeController extends Controller
             'search_string' => 'required|string|min:3'
         ]);
 
-        $search_string = $request->search_string;
-        $recipes = Recipe::where('name', 'LIKE', "%$search_string%")->withCount('likes')->with('user', 'cuisine', 'images')->get();
+        $recipes = Recipe::where('name', 'LIKE', "%$request->search_string%")->withCount('likes')->with('user', 'cuisine', 'images')->get();
 
         return response()->json([
             'status' => 'success',
             'data' => $recipes
         ], 200);
+
+    }
+    
+    public function searchByCuisine(Request $request) {
+
+        $request->validate([
+            'search_string' => 'required|string|min:3'
+        ]);
+
+        $cuisine = Cuisine::where('name', 'LIKE', "%$request->search_string%")->first();
+
+
+        if($cuisine){
+            $recipes = Recipe::where('cuisine_id', "$cuisine->id")->withCount('likes')->with('user', 'cuisine', 'images')->get();
+
+            return response()->json([
+                'status' => 'success',
+                'data' => $recipes
+            ], 200);
+
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'No Recipes Found'
+        ], 404);
+
 
     }
 }
