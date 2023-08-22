@@ -6,7 +6,6 @@ const SingleRecipe = () => {
 		<div>
 			<Navbar
 				items={["Recipes", "Shopping List", "Calendar"]}
-				selected={"Recipes"}
 			/>
 			SingleRecipe
 		</div>
