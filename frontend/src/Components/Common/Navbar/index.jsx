@@ -1,42 +1,43 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
-import { BiLogOut } from "react-icons/bi";
+import { FiUser } from "react-icons/fi";
 import NavbarItem from "../../Base/NavbarItem";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = ({ items, selected = items[0] }) => {
+const Navbar = ({ items, selected = null }) => {
 	const [selectedTab, setSelectedTab] = useState(selected);
-	const location = useLocation();
 
 	const selectHandler = (label) => {
 		setSelectedTab(label);
 	};
+
+	const [dropdownIsActive, setdropdownIsActive] = useState(false);
 
 	const navigate = useNavigate();
 
 	// useEffect(() => {
 	// 	if (localStorage.getItem("access_token") == null) {
 	// 		navigate("/");
-	// 	} else {
-	// 		const role = localStorage.getItem("role");
-	// 		const base_location = location.pathname.split("/")[1];
-
-	// 		if (role?.toLowerCase() !== base_location?.toLowerCase()) {
-	// 			navigate("/e401");
-	// 		}
 	// 	}
 	// }, []);
 
-	const logoutButton = useRef();
+
+	const handleDropdown = () => {
+		setdropdownIsActive(!dropdownIsActive);
+	};
 
 	const handleLogout = () => {
-		logoutButton.current.textContent = "Logging Out...";
 		setTimeout(() => {
-			localStorage.removeItem("access_token");
-			localStorage.removeItem("role");
+			localStorage.removeItem("token");
 			navigate("/");
 		}, 1000);
 	};
+
+	const handleNavigation = (route) => {
+		navigate(`/${route}`)
+		setdropdownIsActive(false)
+	}
+
 
 	return (
 		<div className="navbar">
@@ -52,14 +53,17 @@ const Navbar = ({ items, selected = items[0] }) => {
 					);
 				})}
 			</div>
-			{/* <div
-				className="logout"
-				onClick={() => handleLogout()}
-				ref={logoutButton}
+			<div
+				className={dropdownIsActive ? "profile active" : "profile"}
+				onClick={() => handleDropdown()}
 			>
-				<BiLogOut />
-				Log out
-			</div> */}
+				<FiUser />
+			</div>
+			{dropdownIsActive &&
+				<div className="profile-dropdown">
+					<div className="profile-dropdown-item" onClick={() => handleNavigation("profile")}>Profile</div>
+					<div className="profile-dropdown-item" onClick={() => handleLogout()}>Logout</div>
+				</div>}
 		</div>
 	);
 };
