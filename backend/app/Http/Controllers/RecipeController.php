@@ -83,10 +83,26 @@ class RecipeController extends Controller
             Storage::disk('public')->put($image_path . $image_name, $image_data);
         }
 
-        return response()->json(['message' => 'Recipe created successfully']);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Recipe created successfully'
+        ], 200);
+
     }
     
-    public function searchByName() {
+    public function searchByName(Request $request) {
+
+        $request->validate([
+            'search_string' => 'required|string|min:3'
+        ]);
+
+        $search_string = $request->search_string;
+        $recipes = Recipe::where('name', 'LIKE', "%$search_string%")->withCount('likes')->with('user', 'cuisine', 'images')->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $recipes
+        ], 200);
 
     }
 }

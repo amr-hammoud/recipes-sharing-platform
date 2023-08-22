@@ -19,6 +19,7 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::post("unlike", [InteractionController::class, "unlike"]);
         Route::post("comment", [InteractionController::class, "comment"]);
         Route::post("deleteComment", [InteractionController::class, "deleteComment"]);
+        Route::post("searchByName", [RecipeController::class, "searchByName"]);
     });
 });
 
