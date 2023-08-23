@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
             RecipesSeeder::class,
             IngredientListsTableSeeder::class,
             ImagesSeeder::class,
+            ImagesSeeder::class,
+            ImagesSeeder::class,
+            ImagesSeeder::class,
+            ImagesSeeder::class,
+            ImagesSeeder::class,
             LikesTableSeeder::class,
             CommentsTableSeeder::class
         ]);

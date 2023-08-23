@@ -20,7 +20,7 @@ class IngredientListFactory extends Factory
         return [
             'recipe_id' => $recipe_id,
             'ingredient_id' => $ingredient_id,
-            'description' => $this->faker->words(10, true),
+            'description' => $this->faker->words(3, true),
             'created_at' => now(),
             'updated_at' => now(),
         ];
