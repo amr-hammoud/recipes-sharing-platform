@@ -3,6 +3,7 @@ import "./style.css";
 import { FiUser } from "react-icons/fi";
 import NavbarItem from "../../Base/NavbarItem";
 import { useNavigate } from "react-router-dom";
+import { localStorageAction } from "../../../config/localstorage";
 
 const Navbar = ({ items, selected = null }) => {
 	const [selectedTab, setSelectedTab] = useState(selected);
@@ -16,7 +17,7 @@ const Navbar = ({ items, selected = null }) => {
 	const navigate = useNavigate();
 
 	// useEffect(() => {
-	// 	if (localStorage.getItem("access_token") == null) {
+	// 	if (localStorageAction("token") == null) {
 	// 		navigate("/");
 	// 	}
 	// }, []);

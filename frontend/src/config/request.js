@@ -1,4 +1,5 @@
 import axios from "axios";
+import { localStorageAction } from "./localstorage";
 
 axios.defaults.baseURL = "http://127.0.0.1:8000/api";
 
@@ -12,7 +13,7 @@ export const sendRequest = async ({
 
 	const headers = includeHeaders
 		? {
-				Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+				Authorization: `Bearer ${localStorageAction("token")}`,
 				"Content-Type": "multipart/form-data",
 		  }
 		: {};
