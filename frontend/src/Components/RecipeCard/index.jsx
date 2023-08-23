@@ -14,7 +14,7 @@ const RecipeCard = (recipe) => {
 		<div className="recipe-card" onClick={() => handelNavigation()}>
 			<div className="recipe-card-image">
 				<img
-					src={this_recipe?.images[0]?.encoded_image}
+					src={this_recipe?.cover_photo}
 					alt=""
 				/>
 				<div className="recipe-card-info"></div>
