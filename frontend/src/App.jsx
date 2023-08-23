@@ -6,6 +6,8 @@ import ShoppingList from "./Pages/ShoppingList";
 import Profile from "./Pages/Profile";
 import Calendar from "./Pages/Calendar";
 import "./styles/App.css";
+import "./styles/utilities.css";
+import "./styles/colors.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
