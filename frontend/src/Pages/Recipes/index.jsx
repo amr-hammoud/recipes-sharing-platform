@@ -11,20 +11,21 @@ const Recipes = () => {
 		list: [],
 	});
 
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(false);
+	const [isFetching, setIsFetching] = useState(false);
 
 	const fetchRecipes = async () => {
-		console.log(recipes);
-		const body = {
-			page: recipes.page,
-		};
+		if (isFetching) {
+			return;
+		}
+		setIsFetching(true);
 
 		try {
 			setIsLoading(true);
 			const response = await sendRequest({
 				method: "POST",
 				route: "/recipe",
-				body,
+				body: { page: recipes.page },
 			});
 
 			if (recipes.page > 1) {
@@ -40,17 +41,18 @@ const Recipes = () => {
 					page: prevRecipes.page + 1,
 				}));
 			}
-			console.log(recipes);
-			
 		} catch (e) {
 			console.log(e);
-			setIsLoading(false);
-		}finally{
+		} finally {
 			setIsLoading(false);
 			console.log(recipes);
+			setIsFetching(false);
 		}
 	};
 
+	useEffect(() => {
+		fetchRecipes();
+	}, []);
 
 	return (
 		<div>
@@ -58,8 +60,11 @@ const Recipes = () => {
 				items={["Recipes", "Shopping List", "Calendar"]}
 				selected={"Recipes"}
 			/>
-			<div className="navbar-page">
-				<div className="container">
+			<div className="navbar-page light-bg">
+				<div className="container white-bg">
+					<div className="flex center color-primary mt-20">
+						<h1>Recipes</h1>
+					</div>
 					<InfiniteScroll
 						dataLength={recipes.list.length}
 						next={fetchRecipes}
