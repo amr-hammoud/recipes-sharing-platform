@@ -11,7 +11,7 @@ class Recipe extends Model
 
     protected $hidden = ['user','cuisine', 'cuisine_id'];
     
-    protected $appends = ['cuisine_name','user_username','user_full_name'];
+    protected $appends = ['cuisine_name','user_username','user_full_name', 'cover_photo'];
 
     public function user()
     {
@@ -66,5 +66,16 @@ class Recipe extends Model
     public function getUserFullnameAttribute()
     {
         return $this->user->full_name;
+    }
+
+    public function getCoverPhotoAttribute()
+    {
+        $cover_image = $this->images[0];
+        
+        if ($cover_image) {
+            return $cover_image->encoded_image;
+        }
+        
+        return null;
     }
 }

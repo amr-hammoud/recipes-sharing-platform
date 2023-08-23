@@ -20,7 +20,7 @@ class RecipeController extends Controller
     {
         $page = $request->page ? $request->page : 1;
 
-        $recipes = Recipe::withCount('likes')->with('user', 'images', 'ingredients')->paginate(30, ['*'], 'page', $page);
+        $recipes = Recipe::withCount('likes')->paginate(20, ['*'], 'page', $page);
 
         return response()->json([
             'status' => 'success',
