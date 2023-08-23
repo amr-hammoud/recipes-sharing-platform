@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { FiUser } from "react-icons/fi";
 import NavbarItem from "../../Base/NavbarItem";
@@ -16,11 +16,11 @@ const Navbar = ({ items, selected = null }) => {
 
 	const navigate = useNavigate();
 
-	// useEffect(() => {
-	// 	if (localStorageAction("token") == null) {
-	// 		navigate("/");
-	// 	}
-	// }, []);
+	useEffect(() => {
+		if (localStorageAction("token") == null) {
+			navigate("/");
+		}
+	}, []);
 
 
 	const handleDropdown = () => {
