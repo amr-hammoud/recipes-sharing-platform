@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import { FiUser } from "react-icons/fi";
+import { BiSearch } from "react-icons/bi";
 import NavbarItem from "../../Base/NavbarItem";
 import { useNavigate } from "react-router-dom";
 import { localStorageAction } from "../../../config/localstorage";
-import logo from '../../../Assets/logo128.png'
-
+import logo from "../../../Assets/logo128.png";
 
 const Navbar = ({ items, selected = null }) => {
 	const [selectedTab, setSelectedTab] = useState(selected);
@@ -24,7 +24,6 @@ const Navbar = ({ items, selected = null }) => {
 		}
 	}, []);
 
-
 	const handleDropdown = () => {
 		setdropdownIsActive(!dropdownIsActive);
 	};
@@ -37,10 +36,9 @@ const Navbar = ({ items, selected = null }) => {
 	};
 
 	const handleNavigation = (route) => {
-		navigate(`/${route}`)
-		setdropdownIsActive(false)
-	}
-
+		navigate(`/${route}`);
+		setdropdownIsActive(false);
+	};
 
 	return (
 		<div className="navbar">
@@ -60,17 +58,35 @@ const Navbar = ({ items, selected = null }) => {
 					);
 				})}
 			</div>
-			<div
-				className={dropdownIsActive ? "profile active" : "profile"}
-				onClick={() => handleDropdown()}
-			>
-				<FiUser />
+			<div className="navbar-actions">
+				<div
+					onClick={() => handleNavigation('search')}
+				>
+					<BiSearch />
+				</div>
+				<div
+					className={dropdownIsActive ? "profile active" : "profile"}
+					onClick={() => handleDropdown()}
+				>
+					<FiUser />
+				</div>
 			</div>
-			{dropdownIsActive &&
+			{dropdownIsActive && (
 				<div className="profile-dropdown">
-					<div className="profile-dropdown-item" onClick={() => handleNavigation("profile")}>Profile</div>
-					<div className="profile-dropdown-item" onClick={() => handleLogout()}>Logout</div>
-				</div>}
+					<div
+						className="profile-dropdown-item"
+						onClick={() => handleNavigation("profile")}
+					>
+						Profile
+					</div>
+					<div
+						className="profile-dropdown-item"
+						onClick={() => handleLogout()}
+					>
+						Logout
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

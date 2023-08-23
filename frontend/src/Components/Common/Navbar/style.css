@@ -35,24 +35,25 @@
     gap: 15px;
 }
 
-.profile {
+.navbar-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
-    width: 100%;
-    max-width: fit-content;
+    justify-content: center;
     margin-right: 50px;
-    padding: 10px;
-    border-radius: 10px;
 }
 
-.profile:hover {
+.navbar-actions div{
+    padding: 7px 10px;
+    border-radius: 5px;
+}
+
+.navbar-actions div:hover{
     color: var(--color-white);
     background-color: var(--color-primary);
     cursor: pointer;
 }
 
-.profile.active {
+.navbar-actions div.active {
     color: var(--color-white);
     background-color: var(--color-primary);
 }

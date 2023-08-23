@@ -9,6 +9,7 @@ import "./styles/App.css";
 import "./styles/utilities.css";
 import "./styles/colors.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Search from "./Pages/Search";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/recipes" element={<Recipes />}/>
         <Route path="/recipes/:id?" element={<SingleRecipe />}/>
         <Route path="/create" element={<CreateRecipe />}/>
+        <Route path="/search" element={<Search />}/>
         <Route path="/shopping-list" element={<ShoppingList />}/>
         <Route path="/calendar" element={<Calendar />}/>
         <Route path="/profile" element={<Profile />}/>
