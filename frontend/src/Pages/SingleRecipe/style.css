@@ -89,4 +89,30 @@
 
 .recipe-actions {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: var(--color-text-secondary);
+}
+
+.recipe-actions .button{
+    padding: 5px;
+    background-color: var(--color-background);
+}
+
+.recipe-actions .button:hover{
+    padding: 5px;
+    background-color: var(--color-background);
+}
+
+.recipe-likes-counter{
+
+}
+
+.recipe-like-button{
+
+}
+
+.recipe-share-button{
+
 }

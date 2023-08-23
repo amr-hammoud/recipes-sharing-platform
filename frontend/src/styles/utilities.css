@@ -87,3 +87,11 @@
 .mt-20 {
   margin-top: 20px;
 }
+
+.g-5 {
+  gap: 5px;
+}
+
+.g-10 {
+  gap: 10px;
+}

@@ -9,6 +9,7 @@ import img1 from "../../Assets/auth-bg.jpg";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { BsShareFill } from "react-icons/bs";
 import IngredientItem from "../../Components/Ingredient";
+import Popup from "../../Components/Base/Popup";
 
 const SingleRecipe = () => {
 	const { id } = useParams();
@@ -36,9 +37,24 @@ const SingleRecipe = () => {
 	- Comments
 	*/
 
+	const [popupIsShown, setPopupIsShown] = useState(false);
+
+	const handlePopup = () => {
+		if (popupIsShown) {
+			setPopupIsShown(false);
+		} else {
+			setPopupIsShown(true);
+		}
+	};
+
 	return (
 		<div>
 			<Navbar items={["Recipes", "Shopping List", "Calendar"]} />
+			<Popup
+				text={"Liked Successfully"}
+				popupIsShown={popupIsShown}
+				handlePopup={handlePopup}
+			/>
 			<div className="navbar-page light-bg">
 				<div className="container white-bg flex center">
 					<div className="recipe-container">
@@ -64,23 +80,25 @@ const SingleRecipe = () => {
 							<div className="recipe-info">
 								<h1 className="recipe-name">{recipe.name}</h1>
 								<div className="flex spaceBetween">
-									<div className="flex column">
+									<div className="flex column g-5">
 										<div className="recipe-cuisine">
-											{recipe.cuisine_name}
+											{recipe.cuisine_name} Cuisine
 										</div>
 										<div className="recipe-username">
-											@{recipe.user_username}
+											By @{recipe.user_username}
 										</div>
 									</div>
 									<div className="flex">
 										<div className="recipe-actions">
-											<span className="recipe-likes-counter">
-												{recipe?.likes_count}
-											</span>
-											<div className="recipe-like-button">
-												<AiTwotoneHeart />
+											<div className="flex center g-5">
+												<div className="recipe-likes-counter flex center">
+													{recipe?.likes_count}
+												</div>
+												<div className="button recipe-like-button flex center">
+													<AiTwotoneHeart />
+												</div>
 											</div>
-											<div className="recipe-share-button">
+											<div className="button recipe-share-button flex center">
 												<BsShareFill />
 											</div>
 										</div>
