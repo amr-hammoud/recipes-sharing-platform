@@ -4,6 +4,8 @@ import { FiUser } from "react-icons/fi";
 import NavbarItem from "../../Base/NavbarItem";
 import { useNavigate } from "react-router-dom";
 import { localStorageAction } from "../../../config/localstorage";
+import logo from '../../../Assets/logo128.png'
+
 
 const Navbar = ({ items, selected = null }) => {
 	const [selectedTab, setSelectedTab] = useState(selected);
@@ -42,6 +44,10 @@ const Navbar = ({ items, selected = null }) => {
 
 	return (
 		<div className="navbar">
+			<div className="navbar-logo" onClick={() => handleNavigation("")}>
+				<img src={logo} alt="logo" />
+				Recipefy
+			</div>
 			<div className="items">
 				{items?.map((item, index) => {
 					return (

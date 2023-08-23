@@ -10,6 +10,21 @@
     top: 0;
 }
 
+.navbar-logo{
+    margin-left: 50px;
+    font-family: var(--font-secondary);
+    font-size: 24px;
+    color: var(--color-dark-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navbar-logo img{
+    max-height: 50px;
+}
+
 .navbar .items {
     width: 100%;
     display: flex;
