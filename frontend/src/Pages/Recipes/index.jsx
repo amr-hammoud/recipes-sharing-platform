@@ -17,7 +17,6 @@ const Recipes = () => {
 		}
 
 		try {
-			console.log(recipes.page);
 			const response = await sendRequest({
 				method: "POST",
 				route: "/recipe",
@@ -43,8 +42,8 @@ const Recipes = () => {
 			<div className="navbar-page">
 				<div className="container">
 					<div className="recipes-container">
-						{recipes.list.map((recipe) => {
-							return <RecipeCard recipe={recipe} />;
+						{recipes.list.map((recipe, index) => {
+							return <RecipeCard key={index} recipe={recipe} />;
 						})}
 					</div>
 				</div>
