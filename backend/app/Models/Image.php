@@ -27,7 +27,9 @@ class Image extends Model
 
         if($image_path){
             $image_content = Storage::disk('public')->get($image_path);
-            return base64_encode($image_content);
+            $extension = pathinfo($image_path, PATHINFO_EXTENSION); 
+            $image = "data:image/" . $extension . ";base64," . base64_encode($image_content);
+            return $image;
         }
 
         return null;
