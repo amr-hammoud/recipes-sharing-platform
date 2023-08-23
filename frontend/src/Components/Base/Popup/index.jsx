@@ -6,9 +6,7 @@ const Popup = ({ text, popupIsShown = false, handlePopup }) => {
 	return (
 		popupIsShown && (
 			<div className="popup" onClick={() => handlePopup()}>
-				<div className="popup-close-button">
-					<MdClose />
-				</div>
+				<MdClose />
 				{text}
 			</div>
 		)
