@@ -1,0 +1,18 @@
+.carousel-container {
+    width: 400px;
+}
+
+
+.carousel-container .slider {
+    height: fit-content;
+    max-height: 400px;
+}
+
+.carousel-container img {
+    aspect-ratio: 1;
+    height: 100%;
+}
+
+.recipe-info {
+    padding: 20px;
+}
