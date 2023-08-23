@@ -1,0 +1,15 @@
+.recipe-ingredient-item {
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 10px;
+    color: var(--color-text-secondary);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.ingredient-name {
+    font-weight: bold;
+}
+
+.ingredient-description {
+    font-size: 14px;
+}
