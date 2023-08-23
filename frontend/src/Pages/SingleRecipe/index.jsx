@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../../Components/Common/Navbar";
 import "./style.css";
-import { useParams } from "react-router-dom";
-import { sendRequest } from "../../config/request";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
-import img1 from "../../Assets/auth-bg.jpg";
 import { AiTwotoneHeart } from "react-icons/ai";
 import { BsShareFill } from "react-icons/bs";
+import { Carousel } from "react-responsive-carousel";
+import { sendRequest } from "../../config/request";
+import { useLocation, useParams } from "react-router-dom";
 import IngredientItem from "../../Components/Ingredient";
+import Navbar from "../../Components/Common/Navbar";
 import Popup from "../../Components/Base/Popup";
+import React, { useEffect, useState } from "react";
 
 const SingleRecipe = () => {
 	const { id } = useParams();
-
+	const location = useLocation();
 	const [recipe, setRecipe] = useState({});
 
 	const getRecipe = async () => {
@@ -37,22 +36,33 @@ const SingleRecipe = () => {
 	- Comments
 	*/
 
-	const [popupIsShown, setPopupIsShown] = useState(false);
+	const [popup, setPopup] = useState({
+		text: "",
+		popupIsShown: false,
+	});
 
-	const handlePopup = () => {
-		if (popupIsShown) {
-			setPopupIsShown(false);
+	const handlePopup = (content) => {
+		if (popup.popupIsShown) {
+			setPopup({ ...popup, popupIsShown: false });
 		} else {
-			setPopupIsShown(true);
+			setPopup({ ...popup, popupIsShown: true, text: content });
 		}
+	};
+
+	const handleShareButton = () => {
+		const link = 'http://localhost:3000' + location.pathname;
+		console.log(link);
+		navigator.clipboard.writeText(link);
+		handlePopup("Link Copied to Clipboard");
+		setTimeout(() => setPopup({ ...popup, popupIsShown: false }),1200);
 	};
 
 	return (
 		<div>
 			<Navbar items={["Recipes", "Shopping List", "Calendar"]} />
 			<Popup
-				text={"Liked Successfully"}
-				popupIsShown={popupIsShown}
+				text={popup.text}
+				popupIsShown={popup.popupIsShown}
 				handlePopup={handlePopup}
 			/>
 			<div className="navbar-page light-bg">
@@ -98,7 +108,12 @@ const SingleRecipe = () => {
 													<AiTwotoneHeart />
 												</div>
 											</div>
-											<div className="button recipe-share-button flex center">
+											<div
+												className="button recipe-share-button flex center"
+												onClick={() =>
+													handleShareButton()
+												}
+											>
 												<BsShareFill />
 											</div>
 										</div>

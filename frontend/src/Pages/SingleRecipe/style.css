@@ -95,24 +95,15 @@
     color: var(--color-text-secondary);
 }
 
-.recipe-actions .button{
+.recipe-actions .button {
     padding: 5px;
     background-color: var(--color-background);
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.recipe-actions .button:hover{
+.recipe-actions .button:hover {
     padding: 5px;
-    background-color: var(--color-background);
-}
-
-.recipe-likes-counter{
-
-}
-
-.recipe-like-button{
-
-}
-
-.recipe-share-button{
-
+    color: var(--color-background);
+    background-color: var(--color-primary);
 }
