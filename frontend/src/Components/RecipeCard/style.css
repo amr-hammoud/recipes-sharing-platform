@@ -19,7 +19,8 @@
     position: relative;
 }
 
-.recipe-card-image, .recipe-card-image img {
+.recipe-card-image,
+.recipe-card-image img {
     max-height: 150px;
     border-radius: 10px 10px 0 0;
 }
@@ -56,11 +57,19 @@
     padding: 10px;
 }
 
-.recipe-card-body h3{
+.recipe-card-body h3 {
     color: var(--color-primary);
+}
+
+.recipe-card-name {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .recipe-card-user {
     font-size: 14px;
     margin-top: 10px;
+    color: var(--color-dark-gray);
 }
