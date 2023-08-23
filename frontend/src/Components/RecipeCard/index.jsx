@@ -10,7 +10,6 @@ const RecipeCard = (recipe) => {
 	const [hover,setHover] = useState(false);
 
     const this_recipe = recipe.recipe
-	console.log(this_recipe);
     
 	const handelNavigation = () => {
 		navigate(`/recipes/${this_recipe?.id}`)
