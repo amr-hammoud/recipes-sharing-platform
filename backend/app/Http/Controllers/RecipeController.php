@@ -20,7 +20,7 @@ class RecipeController extends Controller
     {
         $page = $request->page ? $request->page : 1;
 
-        $recipes = Recipe::withCount('likes')->with('user', 'images', 'ingredients')->paginate(20, ['*'], 'page', $page);
+        $recipes = Recipe::withCount('likes')->with('user', 'images', 'ingredients')->paginate(30, ['*'], 'page', $page);
 
         return response()->json([
             'status' => 'success',
@@ -32,7 +32,7 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::withCount('likes')->with('user', 'cuisine', 'comments', 'ingredients', 'images')->findOrFail($id);
 
-        return response()->json([
+        return response()->json([ 
             'status' => 'success',
             'data' => $recipe
         ], 200);
