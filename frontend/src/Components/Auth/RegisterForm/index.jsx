@@ -88,6 +88,7 @@ const RegisterForm = ({ onToggle }) => {
 					})
 				}
 			/>
+			{error && <p>{error}</p>}
 			<div className="flex center">
 				<Button
 					color={"primary-bg"}
