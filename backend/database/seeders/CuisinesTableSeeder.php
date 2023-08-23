@@ -39,7 +39,6 @@ class CuisinesTableSeeder extends Seeder
             ['name' => 'Indian'],
             ['name' => 'Indonesian'],
             ['name' => 'Irish'],
-            ['name' => 'Israeli'],
             ['name' => 'Italian'],
             ['name' => 'Jamaican'],
             ['name' => 'Japanese'],
