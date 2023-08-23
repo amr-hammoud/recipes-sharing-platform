@@ -143,7 +143,3 @@ h3, .h3 {
   background-color: var(--color-background);
   padding: 30px;
 }
-
-body {
-  height: 1000px;
-}
