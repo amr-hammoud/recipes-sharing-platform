@@ -126,7 +126,7 @@ h1, .h1 {
   font-weight: bold;
 }
 h2, .h2 {
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
   font-size: 28px;
   font-weight: normal;
 }
