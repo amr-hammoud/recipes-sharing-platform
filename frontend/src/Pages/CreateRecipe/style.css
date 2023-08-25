@@ -1,0 +1,22 @@
+.create-recipe button{
+    max-width: 200px;
+}
+
+.create-recipe input{
+    /* border: 1px solid var(--color-primary); */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.create-recipe-input {
+    width: 200px;
+    margin: 10px;
+}
+
+.create-recipe-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.create-recipe-column {
+    padding: 20px;
+}
