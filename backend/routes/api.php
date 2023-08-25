@@ -22,6 +22,7 @@ Route::group(["middleware" => "auth:api"], function(){
         Route::post("searchByName", [RecipeController::class, "searchByName"]);
         Route::post("searchByCuisine", [RecipeController::class, "searchByCuisine"]);
     });
+    Route::get("getCuisines", [RecipeController::class, "getCuisines"]);
 });
 
 Route::group(["prefix" => "guest"], function(){
