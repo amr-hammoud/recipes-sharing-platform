@@ -23,7 +23,7 @@ const RecipeCard = (recipe) => {
 				<h3 className="recipe-card-name">{this_recipe?.name}</h3>
 				<div className="flex spaceBetween">
 					<div className="recipe-card-cuisine">
-						{this_recipe?.cuisine_name}
+						{this_recipe?.cuisine_name} Cuisine
 					</div>
 					<div className="recipe-card-likes">
 						<span className="recipe-card-likes-counter">

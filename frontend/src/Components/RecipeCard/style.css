@@ -55,12 +55,9 @@
     padding: 10px;
 }
 
-.recipe-card-body h3 {
-    color: var(--color-primary);
-}
-
 .recipe-card-name {
     width: 100%;
+    color: var(--color-dark-gray);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
