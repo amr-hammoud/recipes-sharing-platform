@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import { FiUser } from "react-icons/fi";
 import { BiSearch } from "react-icons/bi";
+import { IoMdAdd } from "react-icons/io";
 import NavbarItem from "../../Base/NavbarItem";
 import { useNavigate } from "react-router-dom";
 import { localStorageAction } from "../../../config/localstorage";
@@ -59,6 +60,11 @@ const Navbar = ({ items, selected = null }) => {
 				})}
 			</div>
 			<div className="navbar-actions">
+				<div
+					onClick={() => handleNavigation('create')}
+				>
+					<IoMdAdd />
+				</div>
 				<div
 					onClick={() => handleNavigation('search')}
 				>
