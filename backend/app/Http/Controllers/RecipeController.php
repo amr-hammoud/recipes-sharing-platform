@@ -30,7 +30,7 @@ class RecipeController extends Controller
 
     public function recipe($id)
     {
-        $recipe = Recipe::withCount('likes')->with('user', 'cuisine', 'comments', 'ingredients', 'images')->findOrFail($id);
+        $recipe = Recipe::withCount('likes')->with('comments', 'ingredients', 'images')->findOrFail($id);
 
         return response()->json([ 
             'status' => 'success',
@@ -131,5 +131,15 @@ class RecipeController extends Controller
         ], 404);
 
 
+    }
+
+    public function getCuisines() {
+
+        $cuisines = Cuisine::all();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $cuisines
+        ]);
     }
 }
