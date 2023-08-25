@@ -14,3 +14,11 @@
     z-index: -5;
     background-size: cover;
 }
+
+.authenticationBox div{
+    margin: 10px 5px;
+}
+
+.authenticationBox input{
+    border: 1px solid var(--color-dark-gray);
+}

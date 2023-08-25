@@ -63,7 +63,7 @@ const Recipes = () => {
 			<div className="navbar-page light-bg">
 				<div className="container white-bg">
 					<div className="flex center color-primary mt-20">
-						<h1>Recipes</h1>
+						
 					</div>
 					<InfiniteScroll
 						dataLength={recipes.list.length}
@@ -75,7 +75,7 @@ const Recipes = () => {
 						})}
 					</InfiniteScroll>
 					{isLoading && (
-						<div className="flex center">
+						<div className="flex center fullheight">
 							<div className="spinner"></div>
 						</div>
 					)}

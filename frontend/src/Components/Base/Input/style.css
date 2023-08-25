@@ -1,6 +1,5 @@
 .baseInput {
   align-items: start;
-  margin: 10px 5px;
 }
 
 .baseInput > label {
@@ -12,4 +11,5 @@
   height: 30px;
   font-size: 16px;
   padding: 5px 10px;
+  width: 100%;
 }
